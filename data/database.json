@@ -1,0 +1,268 @@
+{
+  "agents": [
+    {
+      "id": "agent_1",
+      "name": "Rahul Sharma",
+      "email": "rahul@lohithadharma.com",
+      "phone": "+91 98765 43210",
+      "status": "Active",
+      "activeLeads": 3
+    },
+    {
+      "id": "agent_2",
+      "name": "Priya Patel",
+      "email": "priya@lohithadharma.com",
+      "phone": "+91 98765 43211",
+      "status": "Active",
+      "activeLeads": 2
+    },
+    {
+      "id": "agent_3",
+      "name": "Amit Verma",
+      "email": "amit@lohithadharma.com",
+      "phone": "+91 98765 43212",
+      "status": "On Leave",
+      "activeLeads": 0
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_1",
+      "name": "Suresh Kumar",
+      "email": "suresh.k@gmail.com",
+      "phone": "+91 91234 56789",
+      "source": "Website Enquiry",
+      "budget": 4500000,
+      "location": "Premium Greenfield Plots, Sector 12",
+      "timeline": "Within 30 Days",
+      "notes": "Interested in plot size 1200 sq.ft. Ready to pay booking amount this week.",
+      "score": 85,
+      "priority": "Hot",
+      "status": "Assigned",
+      "assignedAgentId": "agent_1",
+      "createdAt": "2026-06-07T05:57:49.162Z",
+      "updatedAt": "2026-06-09T05:57:49.163Z"
+    },
+    {
+      "id": "lead_2",
+      "name": "Anjali Rao",
+      "email": "anjali.rao@yahoo.com",
+      "phone": "+91 82345 67890",
+      "source": "WhatsApp Assistant",
+      "budget": 2800000,
+      "location": "Orchard Heights, Phase 2",
+      "timeline": "1-3 Months",
+      "notes": "Enquired about payment plan. Looking for a bank loan option.",
+      "score": 65,
+      "priority": "Warm",
+      "status": "New",
+      "assignedAgentId": "agent_2",
+      "createdAt": "2026-06-09T05:57:49.163Z",
+      "updatedAt": "2026-06-09T17:57:49.163Z"
+    },
+    {
+      "id": "lead_3",
+      "name": "Vikram Singh",
+      "email": "vikram.s@outlook.com",
+      "phone": "+91 73456 78901",
+      "source": "Agent Entry Form",
+      "budget": 1500000,
+      "location": "Green Meadows Plotting",
+      "timeline": "Above 3 Months",
+      "notes": "Just exploring investment options. Budget is low, might postpone purchase.",
+      "score": 30,
+      "priority": "Cold",
+      "status": "Nurturing",
+      "assignedAgentId": null,
+      "createdAt": "2026-06-05T05:57:49.163Z",
+      "updatedAt": "2026-06-05T05:57:49.163Z"
+    },
+    {
+      "id": "lead_absx3qfl9",
+      "name": "Test Hot Buyer",
+      "email": "hot.buyer@test.com",
+      "phone": "+91 99999 88888",
+      "source": "Website Enquiry",
+      "budget": 6500000,
+      "location": "Premium Greenfield Plots, Sector 12",
+      "timeline": "Within 30 Days",
+      "notes": "Looking to book corner plot immediately. Have cash ready.",
+      "score": 100,
+      "priority": "Hot",
+      "status": "Contacted",
+      "assignedAgentId": "agent_2",
+      "createdAt": "2026-06-10T05:57:49.213Z",
+      "updatedAt": "2026-06-10T05:57:50.500Z",
+      "aiSummary": "Lead is highly qualified with an immediate timeline (Within 30 Days) and a strong budget of 65.0 Lakhs. They expressed explicit interest in Premium Greenfield Plots, Sector 12 and left active notes: \"Looking to book corner plot immediately. Have cash ready.\".",
+      "aiSuggestedAction": "Call Test Hot Buyer immediately. Introduce yourself as representative of lohithadharma Projects. Schedule a site visit for this upcoming weekend.",
+      "whatsappTemplate": "Hi Test Hot Buyer, thank you for your enquiry with lohithadharma Projects. I see you're interested in plots at Premium Greenfield Plots, Sector 12 (budget: ₹65.0 L). I am Priya Patel, your dedicated advisor. Would you be available for a brief call or a site visit this week? - Regards, Priya Patel",
+      "emailSubject": "Enquiry: Premium Plots at Premium Greenfield Plots, Sector 12 - lohithadharma Projects",
+      "emailBody": "Dear Test Hot Buyer,\n\nThank you for contacting lohithadharma Projects PVT, LTD.\n\nWe received your request regarding plotting options in \"Premium Greenfield Plots, Sector 12\". \nWe note your preferences:\n- Budget Profile: ₹65.0 Lakhs\n- Expected Investment Timeline: Within 30 Days\n\nWe have premium layout packages matching your requirements. I would like to schedule a quick call to share layout drawings, pricing details, and set up a site visit.\n\nPlease let me know a suitable time to call you, or contact me directly at your convenience.\n\nWarm regards,\nPriya Patel\nSales Representative\nlohithadharma Projects PVT, LTD."
+    },
+    {
+      "id": "lead_5a6g9yxm4",
+      "name": "Rohit Patel",
+      "email": "rohit.patel@gmail.com",
+      "phone": "+91 99887 76655",
+      "source": "Website Enquiry",
+      "budget": 3000000,
+      "location": "Orchard Heights, Phase 2",
+      "timeline": "Within 30 Days",
+      "notes": "Interested in an east-facing plot near the clubhouse.",
+      "score": 90,
+      "priority": "Hot",
+      "status": "Assigned",
+      "assignedAgentId": "agent_1",
+      "createdAt": "2026-06-10T06:01:33.956Z",
+      "updatedAt": "2026-06-10T06:02:24.794Z",
+      "aiSummary": "Lead is highly qualified with an immediate timeline (Within 30 Days) and a strong budget of 30.0 Lakhs. They expressed explicit interest in Orchard Heights, Phase 2 and left active notes: \"Interested in an east-facing plot near the clubhouse.\".",
+      "aiSuggestedAction": "Call Rohit Patel immediately. Introduce yourself as representative of lohithadharma Projects. Schedule a site visit for this upcoming weekend.",
+      "whatsappTemplate": "Hi Rohit Patel, thank you for your enquiry with lohithadharma Projects. I see you're interested in plots at Orchard Heights, Phase 2 (budget: ₹30.0 L). I am Rahul Sharma, your dedicated advisor. Would you be available for a brief call or a site visit this week? - Regards, Rahul Sharma",
+      "emailSubject": "Enquiry: Premium Plots at Orchard Heights, Phase 2 - lohithadharma Projects",
+      "emailBody": "Dear Rohit Patel,\n\nThank you for contacting lohithadharma Projects PVT, LTD.\n\nWe received your request regarding plotting options in \"Orchard Heights, Phase 2\". \nWe note your preferences:\n- Budget Profile: ₹30.0 Lakhs\n- Expected Investment Timeline: Within 30 Days\n\nWe have premium layout packages matching your requirements. I would like to schedule a quick call to share layout drawings, pricing details, and set up a site visit.\n\nPlease let me know a suitable time to call you, or contact me directly at your convenience.\n\nWarm regards,\nRahul Sharma\nSales Representative\nlohithadharma Projects PVT, LTD."
+    }
+  ],
+  "followUps": [
+    {
+      "id": "followup_1",
+      "leadId": "lead_1",
+      "agentName": "Rahul Sharma",
+      "type": "Call",
+      "notes": "Discussed pricing and layout plan. Suresh wants to visit the site on Saturday.",
+      "status": "Completed",
+      "date": "2026-06-08T05:57:49.163Z",
+      "createdAt": "2026-06-08T05:57:49.163Z"
+    },
+    {
+      "id": "followup_2",
+      "leadId": "lead_1",
+      "agentName": "Rahul Sharma",
+      "type": "WhatsApp",
+      "notes": "Shared site map PDF and brochure via WhatsApp.",
+      "status": "Completed",
+      "date": "2026-06-09T05:57:49.164Z",
+      "createdAt": "2026-06-09T05:57:49.164Z"
+    },
+    {
+      "id": "followup_3",
+      "leadId": "lead_2",
+      "agentName": "Priya Patel",
+      "type": "Call",
+      "notes": "Scheduled introductory call to understand specific plot size requirement.",
+      "status": "Scheduled",
+      "date": "2026-06-11T05:57:49.164Z",
+      "createdAt": "2026-06-09T17:57:49.164Z"
+    },
+    {
+      "id": "followup_rju00boo0",
+      "leadId": "lead_absx3qfl9",
+      "agentName": "Rahul Sharma",
+      "type": "Call",
+      "notes": "Called test buyer. Confirmed site visit for tomorrow morning.",
+      "status": "Completed",
+      "date": "2026-06-10T05:57:49.249Z",
+      "createdAt": "2026-06-10T05:57:49.251Z"
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alert_1",
+      "leadId": "lead_1",
+      "message": "Hot Lead Suresh Kumar is assigned. Immediate site visit scheduling needed.",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-07T05:57:49.164Z"
+    },
+    {
+      "id": "alert_2",
+      "leadId": "lead_2",
+      "message": "New WhatsApp lead Anjali Rao qualified as Warm (Score 65).",
+      "read": false,
+      "type": "Info",
+      "createdAt": "2026-06-09T05:57:49.164Z"
+    },
+    {
+      "id": "alert_m5gpoxre2",
+      "leadId": "lead_absx3qfl9",
+      "message": "CRITICAL ALERT: Hot Lead \"Test Hot Buyer\" (Score 100) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-10T05:57:49.225Z"
+    },
+    {
+      "id": "alert_ugdlody3i",
+      "leadId": "lead_absx3qfl9",
+      "message": "CRITICAL ALERT: Hot Lead \"Test Hot Buyer\" (Score 100) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-10T05:57:50.501Z"
+    },
+    {
+      "id": "alert_6n8016l2y",
+      "leadId": "lead_5a6g9yxm4",
+      "message": "CRITICAL ALERT: Hot Lead \"Rohit Patel\" (Score 90) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-10T06:01:34.021Z"
+    },
+    {
+      "id": "alert_jc1z0lglz",
+      "leadId": "lead_5a6g9yxm4",
+      "message": "CRITICAL ALERT: Hot Lead \"Rohit Patel\" (Score 90) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-10T06:02:24.801Z"
+    }
+  ],
+  "chats": [
+    {
+      "id": "chat_1",
+      "leadId": "lead_2",
+      "sender": "buyer",
+      "message": "Hello, I am looking for a plot near Orchard Heights.",
+      "timestamp": "2026-06-09T05:57:49.164Z"
+    },
+    {
+      "id": "chat_2",
+      "leadId": "lead_2",
+      "sender": "bot",
+      "message": "Hi! I'd love to help you find the perfect plot. To guide you better, may I know your approximate budget range?",
+      "timestamp": "2026-06-09T05:57:50.164Z"
+    },
+    {
+      "id": "chat_3",
+      "leadId": "lead_2",
+      "sender": "buyer",
+      "message": "My budget is around 25 to 30 lakhs.",
+      "timestamp": "2026-06-09T05:57:51.164Z"
+    },
+    {
+      "id": "chat_l7m7k2df2",
+      "leadId": "lead_absx3qfl9",
+      "sender": "buyer",
+      "message": "Hello, looking for a plot please.",
+      "timestamp": "2026-06-10T05:57:49.277Z"
+    },
+    {
+      "id": "chat_2xrunwah5",
+      "leadId": "lead_absx3qfl9",
+      "sender": "bot",
+      "message": "Hi Test Hot Buyer! Thanks for reaching out. What is your expected budget range for a residential plot?",
+      "timestamp": "2026-06-10T05:57:50.495Z"
+    },
+    {
+      "id": "chat_r0g10bxvh",
+      "leadId": "lead_5a6g9yxm4",
+      "sender": "buyer",
+      "message": "Hi Rohit Patel, thank you for your enquiry with lohithadharma Projects. I see you're interested in plots at Orchard Heights, Phase 2 (budget: ₹30.0 L). I am Rahul Sharma, your dedicated advisor. Would you be available for a brief call or a site visit this week? - Regards, Rahul Sharma",
+      "timestamp": "2026-06-10T06:02:23.572Z"
+    },
+    {
+      "id": "chat_lawjare16",
+      "leadId": "lead_5a6g9yxm4",
+      "sender": "bot",
+      "message": "Hi Rohit Patel! Thanks for reaching out. What is your expected budget range for a residential plot?",
+      "timestamp": "2026-06-10T06:02:24.784Z"
+    }
+  ]
+}

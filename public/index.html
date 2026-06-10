@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Lead Qualification & Follow-up System - lohithadharma Projects</title>
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Main CSS Link -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <!-- APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- NAVIGATION BAR -->
+    <header class="app-header">
+      <div class="header-logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-hotel"></i>
+        </div>
+        <div class="logo-text">
+          <h1>lohithadharma</h1>
+          <span>Projects PVT, LTD.</span>
+        </div>
+      </div>
+      
+      <nav class="header-nav">
+        <button class="nav-btn active" data-tab="dashboard">
+          <i class="fa-solid fa-chart-line"></i> Dashboard
+        </button>
+        <button class="nav-btn" data-tab="enquiry">
+          <i class="fa-solid fa-envelope-open-text"></i> Client Portal & WhatsApp
+        </button>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Notification Dropdown -->
+        <div class="notification-wrapper">
+          <button class="header-action-btn" id="notificationBtn">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-badge" id="alertBadge">0</span>
+          </button>
+          
+          <div class="notification-dropdown" id="notificationDropdown">
+            <div class="dropdown-header">
+              <h3>System Alerts & Actions</h3>
+              <button id="markAllReadBtn">Clear All</button>
+            </div>
+            <div class="dropdown-list" id="alertsList">
+              <div class="no-alerts">No active alerts. All quiet!</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="user-profile">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256" alt="Sales Manager" class="profile-avatar">
+          <div class="profile-info">
+            <span class="profile-name">Priya Patel</span>
+            <span class="profile-role">Sales Coordinator</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- SYSTEM ALERTS BANNER -->
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <!-- MAIN WORKSPACE -->
+    <main class="app-main">
+      
+      <!-- ================= DASHBOARD TAB ================= -->
+      <section id="dashboardTab" class="tab-content active">
+        <!-- Dashboard Statistics Row -->
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card total-leads">
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Total Leads</span>
+              <h2 class="stat-value" id="statTotalLeads">0</h2>
+            </div>
+          </div>
+          <div class="stat-card hot-leads">
+            <div class="stat-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Hot Leads</span>
+              <h2 class="stat-value" id="statHotLeads">0</h2>
+            </div>
+          </div>
+          <div class="stat-card warm-leads">
+            <div class="stat-icon"><i class="fa-solid fa-fire"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Warm Leads</span>
+              <h2 class="stat-value" id="statWarmLeads">0</h2>
+            </div>
+          </div>
+          <div class="stat-card pipeline-value">
+            <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div class="stat-data">
+              <span class="stat-label">Hot/Warm Pipeline</span>
+              <h2 class="stat-value" id="statPipelineValue">₹0 L</h2>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Filter Controls -->
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search by name, location, phone...">
+          </div>
+          
+          <div class="filter-dropdowns">
+            <select id="priorityFilter">
+              <option value="">All Priorities</option>
+              <option value="hot">🔥 Hot Leads</option>
+              <option value="warm">⚡ Warm Leads</option>
+              <option value="cold">❄️ Cold Leads</option>
+            </select>
+            
+            <select id="statusFilter">
+              <option value="">All Statuses</option>
+              <option value="new">New</option>
+              <option value="assigned">Assigned</option>
+              <option value="contacted">Contacted</option>
+              <option value="nurturing">Nurturing</option>
+              <option value="converted">Converted</option>
+              <option value="lost">Lost</option>
+            </select>
+            
+            <button class="action-btn secondary-btn" id="refreshDashboardBtn">
+              <i class="fa-solid fa-arrows-rotate"></i> Refresh
+            </button>
+          </div>
+        </div>
+        
+        <!-- Main Dashboard View Toggle (List vs Kanban) -->
+        <div class="view-selector-row">
+          <div class="tab-sub-headers">
+            <button class="sub-tab-btn active" id="viewListBtn">
+              <i class="fa-solid fa-list"></i> Lead Table
+            </button>
+            <button class="sub-tab-btn" id="viewKanbanBtn">
+              <i class="fa-solid fa-table-columns"></i> Kanban Board
+            </button>
+          </div>
+        </div>
+        
+        <!-- Leads Layouts -->
+        <div class="dashboard-layouts-container">
+          
+          <!-- TABLE VIEW -->
+          <div id="listViewContainer" class="view-panel active">
+            <div class="table-container">
+              <table class="leads-table">
+                <thead>
+                  <tr>
+                    <th>Lead Name</th>
+                    <th>Priority</th>
+                    <th>Score</th>
+                    <th>Interest Location</th>
+                    <th>Budget</th>
+                    <th>Timeline</th>
+                    <th>Assigned Agent</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="leadsTableBody">
+                  <!-- Leads loaded dynamically -->
+                </tbody>
+              </table>
+              <div class="empty-state" id="listEmptyState" style="display:none;">
+                <i class="fa-regular fa-folder-open"></i>
+                <p>No leads found matching your criteria.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- KANBAN BOARD VIEW -->
+          <div id="kanbanViewContainer" class="view-panel">
+            <div class="kanban-board">
+              <!-- New Column -->
+              <div class="kanban-column" data-status="New">
+                <div class="kanban-column-header">
+                  <span class="column-title">New Enquiries</span>
+                  <span class="column-count" id="count-New">0</span>
+                </div>
+                <div class="kanban-cards-list" id="list-New" ondragover="allowDrop(event)" ondrop="drop(event, 'New')"></div>
+              </div>
+              <!-- Assigned Column -->
+              <div class="kanban-column" data-status="Assigned">
+                <div class="kanban-column-header">
+                  <span class="column-title">Assigned</span>
+                  <span class="column-count" id="count-Assigned">0</span>
+                </div>
+                <div class="kanban-cards-list" id="list-Assigned" ondragover="allowDrop(event)" ondrop="drop(event, 'Assigned')"></div>
+              </div>
+              <!-- Contacted Column -->
+              <div class="kanban-column" data-status="Contacted">
+                <div class="kanban-column-header">
+                  <span class="column-title">Contacted</span>
+                  <span class="column-count" id="count-Contacted">0</span>
+                </div>
+                <div class="kanban-cards-list" id="list-Contacted" ondragover="allowDrop(event)" ondrop="drop(event, 'Contacted')"></div>
+              </div>
+              <!-- Nurturing Column -->
+              <div class="kanban-column" data-status="Nurturing">
+                <div class="kanban-column-header">
+                  <span class="column-title">Nurturing</span>
+                  <span class="column-count" id="count-Nurturing">0</span>
+                </div>
+                <div class="kanban-cards-list" id="list-Nurturing" ondragover="allowDrop(event)" ondrop="drop(event, 'Nurturing')"></div>
+              </div>
+              <!-- Converted Column -->
+              <div class="kanban-column" data-status="Converted">
+                <div class="kanban-column-header">
+                  <span class="column-title">Converted</span>
+                  <span class="column-count" id="count-Converted">0</span>
+                </div>
+                <div class="kanban-cards-list" id="list-Converted" ondragover="allowDrop(event)" ondrop="drop(event, 'Converted')"></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- ================= CLIENT ENQUIRY PORTAL TAB ================= -->
+      <section id="enquiryTab" class="tab-content">
+        <div class="enquiry-grid">
+          
+          <!-- Column 1: Website / Agent Lead Entry Form -->
+          <div class="form-container-card">
+            <div class="card-header">
+              <h2><i class="fa-solid fa-clipboard-list"></i> Digital Capture Form</h2>
+              <p>Simulates lead entry via website form, mobile app, or walk-in enquiry.</p>
+            </div>
+            
+            <form id="leadEntryForm" class="styled-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="leadName">Full Name *</label>
+                  <input type="text" id="leadName" required placeholder="e.g. Rajesh Patil">
+                </div>
+                <div class="form-group">
+                  <label for="leadPhone">Phone Number *</label>
+                  <input type="tel" id="leadPhone" required placeholder="e.g. +91 98989 89898">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="leadEmail">Email Address</label>
+                  <input type="email" id="leadEmail" placeholder="e.g. rajesh@gmail.com">
+                </div>
+                <div class="form-group">
+                  <label for="leadSource">Lead Capture Source</label>
+                  <select id="leadSource">
+                    <option value="Website Enquiry">Website Enquiry</option>
+                    <option value="Mobile Application">Mobile Application</option>
+                    <option value="Agent Entry Form">Agent Entry Form</option>
+                    <option value="Walk-in Client">Walk-in Client</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="leadBudget">Approximate Budget (INR)</label>
+                  <div class="budget-slider-wrapper">
+                    <input type="range" id="leadBudget" min="500000" max="10000000" step="500000" value="3000000">
+                    <div class="budget-values">
+                      <span id="budgetValue">₹30 Lakhs</span>
+                      <span class="max-budget">₹1 Crore</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="leadLocation">Interest Area / Project Layout</label>
+                  <input type="text" id="leadLocation" placeholder="e.g. Premium Greenfield Plots, Sector 12" list="locationsList">
+                  <datalist id="locationsList">
+                    <option value="Premium Greenfield Plots, Sector 12"></option>
+                    <option value="Orchard Heights, Phase 2"></option>
+                    <option value="Green Meadows Plotting"></option>
+                    <option value="Lakeview Township"></option>
+                    <option value="Auroville Farms"></option>
+                  </datalist>
+                </div>
+                <div class="form-group">
+                  <label for="leadTimeline">Investment Timeline</label>
+                  <select id="leadTimeline">
+                    <option value="Within 30 Days">Within 30 Days (Immediate)</option>
+                    <option value="1-3 Months">1-3 Months (Short term)</option>
+                    <option value="3-6 Months">3-6 Months (Medium term)</option>
+                    <option value="Above 3 Months">Above 3 Months (Exploring)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="leadNotes">Special Notes or Questions</label>
+                <textarea id="leadNotes" rows="3" placeholder="Describe any specific size preference, road-facing requirement, or corner plot interest."></textarea>
+              </div>
+              
+              <button type="submit" class="action-btn primary-btn submit-btn" id="submitFormBtn">
+                <span class="btn-text">Submit Enquiry</span>
+                <span class="loading-spinner" style="display:none;"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+              </button>
+            </form>
+          </div>
+          
+          <!-- Column 2: WhatsApp Simulation Interface -->
+          <div class="whatsapp-simulation-card">
+            <div class="card-header">
+              <h2><i class="fa-brands fa-whatsapp"></i> WhatsApp Enquiry Simulator</h2>
+              <p>Test conversational auto-capture. Select a lead or create one, then chat with the bot.</p>
+            </div>
+            
+            <div class="chat-selector-row">
+              <label for="chatLeadSelect">Active WhatsApp Simulation Lead:</label>
+              <select id="chatLeadSelect">
+                <!-- Loaded dynamically -->
+              </select>
+            </div>
+            
+            <!-- Phone Frame -->
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <div class="whatsapp-header">
+                  <div class="wa-back-btn"><i class="fa-solid fa-arrow-left"></i></div>
+                  <img src="img/avatar.png" alt="Company Logo" class="wa-avatar" onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=256'">
+                  <div class="wa-user-info">
+                    <span class="wa-name">lohithadharma AI Assistant</span>
+                    <span class="wa-status">online</span>
+                  </div>
+                  <div class="wa-actions"><i class="fa-solid fa-video"></i><i class="fa-solid fa-phone"></i></div>
+                </div>
+                
+                <div class="whatsapp-chat-body" id="whatsappChatBody">
+                  <!-- Chat messages will render here -->
+                </div>
+                
+                <div class="whatsapp-input-area">
+                  <button class="wa-emoji-btn"><i class="fa-regular fa-smile"></i></button>
+                  <input type="text" id="whatsappInputField" placeholder="Type a message to capture details...">
+                  <button class="wa-send-btn" id="whatsappSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- ================= LEAD DETAIL PAGE TAB (DYNAMICALLY SHOWN) ================= -->
+      <section id="detailTab" class="tab-content">
+        <!-- Back Button row -->
+        <div class="detail-nav-row">
+          <button class="action-btn secondary-btn" id="backToDashboardBtn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+          </button>
+          <div class="detail-action-buttons">
+            <button class="action-btn secondary-btn" id="reprocessLeadBtn">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> AI Re-qualify
+            </button>
+            <button class="action-btn danger-btn" id="deleteLeadBtn">
+              <i class="fa-solid fa-trash"></i> Delete Record
+            </button>
+          </div>
+        </div>
+        
+        <!-- Details Workspace Grid -->
+        <div class="detail-grid">
+          
+          <!-- Left Column: Lead core fields & assignment -->
+          <div class="detail-column-left">
+            <!-- Lead Profile Card -->
+            <div class="lead-profile-summary-card">
+              <div class="profile-summary-header">
+                <div class="summary-details">
+                  <h1 id="detailName">Suresh Kumar</h1>
+                  <div class="badges-row">
+                    <span id="detailPriorityBadge" class="lead-badge hot">HOT</span>
+                    <span id="detailStatusBadge" class="status-badge assigned">Assigned</span>
+                    <span id="detailSource" class="source-badge">Website Enquiry</span>
+                  </div>
+                </div>
+                <!-- Score Circle Gauge -->
+                <div class="score-gauge-wrapper">
+                  <div class="score-circle">
+                    <svg class="score-svg">
+                      <circle class="score-bg-circle" cx="45" cy="45" r="38"></circle>
+                      <circle class="score-progress-circle" cx="45" cy="45" r="38" id="detailScoreCircle"></circle>
+                    </svg>
+                    <div class="score-number-display">
+                      <span id="detailScoreNumber">85</span>
+                      <small>Score</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Core fields list -->
+              <div class="fields-list">
+                <div class="field-item">
+                  <span class="field-label"><i class="fa-regular fa-envelope"></i> Email</span>
+                  <span class="field-value" id="detailEmail">suresh.k@gmail.com</span>
+                </div>
+                <div class="field-item">
+                  <span class="field-label"><i class="fa-solid fa-phone"></i> Phone</span>
+                  <span class="field-value" id="detailPhone">+91 91234 56789</span>
+                </div>
+                <div class="field-item">
+                  <span class="field-label"><i class="fa-solid fa-indian-rupee-sign"></i> Budget Preference</span>
+                  <span class="field-value highlight-value" id="detailBudget">₹45 Lakhs</span>
+                </div>
+                <div class="field-item">
+                  <span class="field-label"><i class="fa-solid fa-location-dot"></i> Layout Area</span>
+                  <span class="field-value" id="detailLocation">Premium Greenfield Plots, Sector 12</span>
+                </div>
+                <div class="field-item">
+                  <span class="field-label"><i class="fa-regular fa-calendar-check"></i> Investment Timeline</span>
+                  <span class="field-value" id="detailTimeline">Within 30 Days</span>
+                </div>
+                <div class="field-item">
+                  <span class="field-label"><i class="fa-regular fa-calendar"></i> Registered Date</span>
+                  <span class="field-value" id="detailCreatedDate">10 June 2026</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Agent Assignment Panel -->
+            <div class="detail-card assignment-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-user-tie"></i> Sales Representative Assignment</h3>
+              </div>
+              <div class="assignment-body">
+                <div class="current-assignment">
+                  <div class="assigned-agent-avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                  <div class="assigned-agent-info">
+                    <h4 id="detailAssignedAgentName">Unassigned</h4>
+                    <p id="detailAssignedAgentContact">No sales agent allocated yet</p>
+                  </div>
+                </div>
+                <div class="assignment-actions">
+                  <select id="agentSelectDropdown">
+                    <option value="">Choose Agent...</option>
+                  </select>
+                  <button class="action-btn primary-btn" id="assignAgentBtn">Reassign</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Manual Log Form -->
+            <div class="detail-card log-action-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-file-signature"></i> Log Sales Action / Follow-up</h3>
+              </div>
+              <form id="logFollowupForm" class="followup-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="followupType">Action Type</label>
+                    <select id="followupType">
+                      <option value="Call">📞 Phone Call</option>
+                      <option value="WhatsApp">💬 WhatsApp Sent</option>
+                      <option value="Email">📧 Email Sent</option>
+                      <option value="Site Visit">🏗️ Site Visit Arranged</option>
+                      <option value="Negotiation">🤝 Price Negotiation</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="followupStatus">Status</label>
+                    <select id="followupStatus">
+                      <option value="Completed">Completed</option>
+                      <option value="Scheduled">Scheduled (Task Reminder)</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="followupNotes">Action Description / Outcome *</label>
+                  <textarea id="followupNotes" required rows="3" placeholder="Describe the discussion, agreement, or customer feedback..."></textarea>
+                </div>
+                
+                <button type="submit" class="action-btn primary-btn" id="submitFollowupBtn">Log Action</button>
+              </form>
+            </div>
+          </div>
+          
+          <!-- Right Column: AI Assistant Console & Action Timeline -->
+          <div class="detail-column-right">
+            
+            <!-- AI Copilot Console -->
+            <div class="detail-card ai-copilot-card">
+              <div class="card-header ai-header">
+                <div class="ai-logo-wrapper">
+                  <i class="fa-solid fa-wand-magic-sparkles fa-spin-slow"></i>
+                  <h3>AI Sales Copilot</h3>
+                </div>
+                <span class="ai-badge">GEMINI ENABLED</span>
+              </div>
+              <div class="ai-body">
+                <!-- Analysis Summary -->
+                <div class="ai-insight-box">
+                  <h4><i class="fa-solid fa-circle-nodes"></i> Qualification Summary</h4>
+                  <p id="aiSummaryText">Running scoring evaluation...</p>
+                </div>
+                <!-- Suggested Action -->
+                <div class="ai-insight-box action-box">
+                  <h4><i class="fa-solid fa-circle-play"></i> Recommended Next Step</h4>
+                  <p id="aiActionText">Analyze lead to receive follow-up guidance.</p>
+                </div>
+                
+                <!-- Communication Copy Center -->
+                <div class="ai-copy-center">
+                  <div class="center-header">
+                    <h4><i class="fa-regular fa-comments"></i> Automated Follow-up Proposal</h4>
+                  </div>
+                  
+                  <div class="copy-tab-headers">
+                    <button class="copy-tab-btn active" data-copytab="wa">WhatsApp Draft</button>
+                    <button class="copy-tab-btn" data-copytab="email">Email Template</button>
+                  </div>
+                  
+                  <div class="copy-tabs-content">
+                    <div class="copy-tab-panel active" id="waCopyPanel">
+                      <textarea id="whatsappTemplateText" readonly rows="5"></textarea>
+                      <div class="copy-panel-actions">
+                        <button class="action-btn secondary-btn" id="copyWaBtn">
+                          <i class="fa-regular fa-copy"></i> Copy Message
+                        </button>
+                        <button class="action-btn success-btn" id="sendSimulationWaBtn">
+                          <i class="fa-brands fa-whatsapp"></i> Open in WhatsApp Simulator
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div class="copy-tab-panel" id="emailCopyPanel">
+                      <div class="email-subject-row">
+                        <strong>Subject:</strong> <span id="emailTemplateSubject">...</span>
+                      </div>
+                      <textarea id="emailTemplateBody" readonly rows="6"></textarea>
+                      <div class="copy-panel-actions">
+                        <button class="action-btn secondary-btn" id="copyEmailBtn">
+                          <i class="fa-regular fa-copy"></i> Copy Email Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- History / Follow-up Timeline -->
+            <div class="detail-card timeline-card">
+              <div class="card-header">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Lead Action & History Timeline</h3>
+              </div>
+              <div class="timeline-body" id="leadTimeline">
+                <!-- Timeline items rendered dynamically -->
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </section>
+      
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <p>© 2026 lohithadharma Projects PVT, LTD. All rights reserved.</p>
+      </div>
+      <div class="footer-right">
+        <span>AI Lead Qualification & Follow-up System v1.0.0</span>
+      </div>
+    </footer>
+    
+  </div>
+
+  <!-- Javascript File Links -->
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
