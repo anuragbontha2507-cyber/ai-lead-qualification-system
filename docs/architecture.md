@@ -11,7 +11,7 @@ The application follows a monolithic single-tier client-server structure designe
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        BROWSER FRONTEND (CLIENT)                       │
 │  - Single Page Application (app.js, components.js)                      │
-│  - Glassmorphic Dashboard View (CSS Grid, Tables, Kanban Columns)      │
+│  - Premium SaaS Dashboard View (CSS Grid, Tables, Kanban Columns, Drag) │
 │  - Interactive Client Form & Real-time WhatsApp Phone Simulator        │
 └──────────────────────────────────┬─────────────────────────────────────┘
                                    │ HTTP REST API
@@ -64,7 +64,7 @@ sequenceDiagram
     
     alt Lead is Hot
         FE->>FE: Trigger Critical Toast alert on Dashboard
-        FE->>FE: Sound notification bell beep
+        FE->>FE: Sound notification bell beep and success chimes
     end
     
     FE->>FE: Refresh dashboard charts & table views

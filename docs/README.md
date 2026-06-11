@@ -11,7 +11,7 @@ Real estate operations depend heavily on fast customer follow-ups. Delays in res
 ---
 
 ## 2. Technology Stack
-- **Frontend Layer**: Vanilla HTML5, CSS3 (Modern dark-mode glassmorphic theme), JavaScript (ES6 Modules)
+- **Frontend Layer**: Vanilla HTML5, CSS3 (Premium light SaaS theme in Navy, Electric Blue, and Cyan, featuring a visual product Landing Page, interactive ROI calculator, and advanced CRM widgets), JavaScript (ES6 Modules)
 - **Backend API Layer**: Node.js, Express Framework
 - **AI Core Engine**: Rule-Based Prompt Scoring with Google Gemini API integration (built-in fallback engine)
 - **Database Engine**: Local Relational JSON file database (`data/database.json`) for zero-setup execution
