@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initEnquiryForm();
   initWhatsAppSimulator();
   initDetailViewHandlers();
+  initHomeTabAnimations();
+  initROICalculator();
+  initShowcaseSelector();
+  initCRMShortcuts();
+  initEmojiPicker();
   
   // Start background alert polling (every 10 seconds)
   loadAlerts();
@@ -28,8 +33,40 @@ function initRouting() {
 
   // Logo click routing
   document.querySelector('.header-logo').addEventListener('click', () => {
-    switchTab('dashboard');
+    switchTab('home');
   });
+
+  // Book Demo Navbar button routing
+  const bookDemoBtn = document.getElementById('navBookDemoBtn');
+  if (bookDemoBtn) {
+    bookDemoBtn.addEventListener('click', () => {
+      switchTab('enquiry');
+      setTimeout(() => {
+        const entryForm = document.getElementById('leadEntryForm');
+        if (entryForm) entryForm.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    });
+  }
+
+  // Hero page primary CTA button routing
+  const heroStartBtn = document.getElementById('heroStartDemoBtn');
+  if (heroStartBtn) {
+    heroStartBtn.addEventListener('click', () => switchTab('enquiry'));
+  }
+  const ctaStartTrialBtn = document.getElementById('ctaStartTrialBtn');
+  if (ctaStartTrialBtn) {
+    ctaStartTrialBtn.addEventListener('click', () => switchTab('enquiry'));
+  }
+  
+  // Watch Video Modal Mock / Alert
+  const heroWatchBtn = document.getElementById('heroWatchVideoBtn');
+  const ctaBookLiveBtn = document.getElementById('ctaBookLiveBtn');
+  const showDemoMock = () => {
+    showToast("Launching interactive sandbox simulator...", "info");
+    switchTab('enquiry');
+  };
+  if (heroWatchBtn) heroWatchBtn.addEventListener('click', showDemoMock);
+  if (ctaBookLiveBtn) ctaBookLiveBtn.addEventListener('click', showDemoMock);
 
   // Notification Icon Toggle
   const notifBtn = document.getElementById('notificationBtn');
@@ -74,7 +111,7 @@ function switchTab(tabId) {
   // Update visible section
   const sections = document.querySelectorAll('.tab-content');
   sections.forEach(section => {
-    if (section.id === `${tabId}Tab`) {
+    if (section.id === `${tabId}Tab` || section.id === `${tabId}Content`) {
       section.classList.add('active');
     } else {
       section.classList.remove('active');
@@ -87,6 +124,8 @@ function switchTab(tabId) {
     loadLeads();
   } else if (tabId === 'enquiry') {
     loadWhatsAppLeadsDropdown();
+  } else if (tabId === 'home') {
+    initHomeTabAnimations();
   }
 }
 
@@ -446,6 +485,37 @@ function initEnquiryForm() {
       submitBtn.disabled = false;
     }
   });
+
+  // Update completeness progress bar dynamically
+  const formInputs = form.querySelectorAll('input, textarea');
+  const updateFormProgress = () => {
+    let completeCount = 0;
+    const nameVal = document.getElementById('leadName').value.trim();
+    const phoneVal = document.getElementById('leadPhone').value.trim();
+    const emailVal = document.getElementById('leadEmail').value.trim();
+    const locationVal = document.getElementById('leadLocation').value.trim();
+    const notesVal = document.getElementById('leadNotes').value.trim();
+
+    if (nameVal) completeCount++;
+    if (phoneVal) completeCount++;
+    if (emailVal) completeCount++;
+    if (locationVal) completeCount++;
+    if (notesVal) completeCount++;
+
+    const percent = completeCount * 20;
+    const pctLabel = document.getElementById('formProgressPercent');
+    const barEl = document.getElementById('formProgressBar');
+    if (pctLabel) pctLabel.innerText = `${percent}%`;
+    if (barEl) barEl.style.width = `${percent}%`;
+  };
+
+  formInputs.forEach(input => {
+    input.addEventListener('input', updateFormProgress);
+  });
+  
+  // Reset and initial states
+  form.addEventListener('reset', () => setTimeout(updateFormProgress, 50));
+  updateFormProgress();
 }
 
 // ==========================================================================
@@ -578,8 +648,23 @@ async function sendSimulatorMessage() {
     });
 
     if (response.ok) {
+      // Render typing indicator immediately
+      const typingBubble = document.createElement('div');
+      typingBubble.className = 'wa-bubble bot wa-typing-indicator';
+      typingBubble.id = 'waTypingIndicator';
+      typingBubble.innerHTML = `
+        <div class="wa-typing-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      `;
+      chatBody.appendChild(typingBubble);
+      chatBody.scrollTop = chatBody.scrollHeight;
+
       // Reload chat after brief delay to catch the bot reply bubble
       setTimeout(() => {
+        typingBubble.remove();
         loadChatHistory(leadId);
         // Play slight double tone for message incoming
         playMessageIncomingTone();
@@ -876,4 +961,132 @@ function debounce(func, wait) {
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
+}
+
+// ==========================================================================
+// HOME TAB REDESIGN ANIMATIONS & INTERACTIVE LOGIC
+// ==========================================================================
+
+function initHomeTabAnimations() {
+  const animateCounter = (elId, target, suffix = '') => {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    let start = 0;
+    const duration = 1200; // 1.2s
+    const steps = 30;
+    const increment = Math.ceil(target / steps);
+    
+    if (el.counterInterval) clearInterval(el.counterInterval);
+    
+    el.counterInterval = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        el.innerText = target.toLocaleString() + suffix;
+        clearInterval(el.counterInterval);
+      } else {
+        el.innerText = start.toLocaleString() + suffix;
+      }
+    }, Math.floor(duration / steps));
+  };
+  
+  animateCounter('counterLeads', 5000, '+');
+  animateCounter('counterAccuracy', 95, '%');
+  animateCounter('counterResponse', 60, '%');
+  animateCounter('counterProductivity', 3, 'X');
+}
+
+function initROICalculator() {
+  const leadsInput = document.getElementById('roiMonthlyLeads');
+  const teamInput = document.getElementById('roiTeamSize');
+  const convInput = document.getElementById('roiConversion');
+  
+  if (!leadsInput || !teamInput || !convInput) return;
+  
+  const updateROI = () => {
+    const leads = Number(leadsInput.value);
+    const team = Number(teamInput.value);
+    const valuePerDeal = Number(convInput.value);
+    
+    // Update labels in real-time
+    document.getElementById('roiLeadsValue').innerText = leads.toLocaleString() + ' Leads';
+    document.getElementById('roiTeamValue').innerText = team + (team === 1 ? ' rep' : ' reps');
+    
+    const formattedVal = valuePerDeal >= 10000000 ? '₹1 Crore' : `₹${(valuePerDeal / 100000).toFixed(0)} Lakhs`;
+    document.getElementById('roiConversionValue').innerText = formattedVal;
+    
+    // Calculations:
+    // Hours Saved: 15 mins (0.25 hrs) per lead
+    const hoursSaved = Math.round(leads * 0.25);
+    document.getElementById('calcHoursSaved').innerText = `${hoursSaved} hrs`;
+    
+    // Revenue Boost: 2.5% absolute conversion rate improvement
+    const revenueBoost = Math.round(leads * 0.025 * valuePerDeal);
+    const boostLakhs = (revenueBoost / 100000).toFixed(1);
+    document.getElementById('calcRevBoost').innerText = `₹${boostLakhs} Lakhs`;
+    
+    // Productivity Gain: 3x baseline plus scaling
+    const productivity = (3.0 + (leads / 5000)).toFixed(1);
+    document.getElementById('calcProdGain').innerText = `${productivity}x`;
+  };
+  
+  leadsInput.addEventListener('input', updateROI);
+  teamInput.addEventListener('input', updateROI);
+  convInput.addEventListener('input', updateROI);
+  
+  updateROI();
+}
+
+function initShowcaseSelector() {
+  const buttons = document.querySelectorAll('.showcase-tab-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const panels = document.querySelectorAll('.showcase-panel');
+      panels.forEach(p => p.classList.remove('active'));
+      
+      const targetPanelId = `showcase-${btn.getAttribute('data-showcase')}`;
+      const panel = document.getElementById(targetPanelId);
+      if (panel) panel.classList.add('active');
+    });
+  });
+}
+
+function initCRMShortcuts() {
+  document.querySelectorAll('.view-crm-shortcut').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = el.getAttribute('data-target-tab');
+      switchTab(target);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+
+function initEmojiPicker() {
+  const emojiBtn = document.getElementById('waEmojiBtn');
+  const emojiPanel = document.getElementById('emojiPanel');
+  const inputField = document.getElementById('whatsappInputField');
+  
+  if (!emojiBtn || !emojiPanel || !inputField) return;
+  
+  emojiBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    emojiPanel.classList.toggle('active');
+  });
+  
+  emojiPanel.addEventListener('click', (e) => {
+    const item = e.target.closest('.wa-emoji-item');
+    if (item) {
+      const emoji = item.getAttribute('data-emoji');
+      inputField.value += emoji;
+      emojiPanel.classList.remove('active');
+      inputField.focus();
+    }
+  });
+  
+  document.addEventListener('click', () => {
+    emojiPanel.classList.remove('active');
+  });
 }

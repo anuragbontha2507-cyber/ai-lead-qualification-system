@@ -60,10 +60,47 @@ function renderScoreGauge(circleElement, numberElement, score) {
 }
 
 // ==========================================================================
+// AUDIO SYNTHESIZER ACTIONS
+// ==========================================================================
+function playSuccessChime() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const playNote = (freq, time, duration) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, time);
+      gain.gain.setValueAtTime(0.04, time);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+      osc.start(time);
+      osc.stop(time + duration);
+    };
+    const now = ctx.currentTime;
+    playNote(523.25, now, 0.3);       // C5
+    playNote(659.25, now + 0.08, 0.3); // E5
+    playNote(783.99, now + 0.16, 0.3); // G5
+    playNote(1046.50, now + 0.24, 0.4); // C6
+  } catch(e){}
+}
+
+// ==========================================================================
 // KANBAN DRAG AND DROP HANDLERS
 // ==========================================================================
 function allowDrop(ev) {
   ev.preventDefault();
+  const list = ev.currentTarget;
+  if (list && list.classList.contains('kanban-cards-list')) {
+    list.classList.add('drag-over');
+  }
+}
+
+function dragLeave(ev) {
+  const list = ev.currentTarget;
+  if (list) {
+    list.classList.remove('drag-over');
+  }
 }
 
 function drag(ev) {
@@ -77,6 +114,11 @@ function dragEnd(ev) {
 
 async function drop(ev, newStatus) {
   ev.preventDefault();
+  const list = ev.currentTarget;
+  if (list) {
+    list.classList.remove('drag-over');
+  }
+
   const leadCardId = ev.dataTransfer.getData("text/plain");
   const cardElement = document.getElementById(leadCardId);
   if (!cardElement) return;
@@ -84,40 +126,6 @@ async function drop(ev, newStatus) {
   const leadId = leadCardId.replace('kanban-card-', '');
   
   try {
-    // Call API to update status
-    const response = await fetch(`/api/leads/${leadId}`, {
-      method: 'GET'
-    });
-    if (!response.ok) throw new Error("Could not find lead details");
-    const leadDetails = await response.json();
-    
-    // Perform update
-    const updateResponse = await fetch(`/api/leads/${leadId}`, {
-      method: 'POST', // Repurpose process or update
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...leadDetails, status: newStatus })
-    });
-    
-    // Note: since our express API has routes for process and follow-ups, we can make a custom update route
-    // Wait, let's create a custom update path or patch directly. In routes.js, we support POST /leads/:id/assign
-    // and POST /leads/:id/followup. Let's make sure our routes also support a status update PATCH or we can
-    // just call an endpoint to update status. Wait! In routes.js, does it have an endpoint to update status?
-    // Let's check:
-    // We have:
-    // router.post('/leads/:id/assign', (req, res) => { ... })
-    // router.post('/leads/:id/followup', (req, res) => { ... }) which auto-transitions status.
-    // What if we add a status change in backend? Let's check routes.js! Oh, routes.js has no explicit PATCH/PUT lead route,
-    // but we can add a simple follow-up of type "System" that changes status, or we can just add a route.
-    // Wait! Let's check if we can add a route or if we can make POST /leads/:id/process handle a status payload, 
-    // or log a follow-up that changes it.
-    // Let's add a PATCH /api/leads/:id route to update general lead details like status, budget, etc.
-    // Oh, since we are in public/js/components.js, let's see how we will call the API.
-    // We can make a PATCH request to /api/leads/:id. Wait! We should make sure routes.js has this route.
-    // Let's write the PATCH route in routes.js later or make a general POST route for state edits.
-    // Actually, let's review: we can make a POST request to `/api/leads/${leadId}/status` or just update via PATCH `/api/leads/${leadId}`.
-    // Let's modify routes.js to support PATCH `/api/leads/:id` to make it super elegant and full-featured!
-    // Yes, we will modify routes.js to add PATCH /api/leads/:id.
-    
     const patchResponse = await fetch(`/api/leads/${leadId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -131,6 +139,7 @@ async function drop(ev, newStatus) {
       
       // Update count tags
       showToast(`Lead status updated to ${newStatus}`, 'success');
+      playSuccessChime(); // Play synthesized chime
       
       // Trigger dashboard reload stats
       if (window.loadDashboardStats) {

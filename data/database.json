@@ -14,7 +14,7 @@
       "email": "priya@lohithadharma.com",
       "phone": "+91 98765 43211",
       "status": "Active",
-      "activeLeads": 2
+      "activeLeads": 3
     },
     {
       "id": "agent_3",
@@ -55,10 +55,10 @@
       "notes": "Enquired about payment plan. Looking for a bank loan option.",
       "score": 65,
       "priority": "Warm",
-      "status": "New",
+      "status": "Contacted",
       "assignedAgentId": "agent_2",
       "createdAt": "2026-06-09T05:57:49.163Z",
-      "updatedAt": "2026-06-09T17:57:49.163Z"
+      "updatedAt": "2026-06-11T04:32:47.822Z"
     },
     {
       "id": "lead_3",
@@ -120,6 +120,28 @@
       "whatsappTemplate": "Hi Rohit Patel, thank you for your enquiry with lohithadharma Projects. I see you're interested in plots at Orchard Heights, Phase 2 (budget: ₹30.0 L). I am Rahul Sharma, your dedicated advisor. Would you be available for a brief call or a site visit this week? - Regards, Rahul Sharma",
       "emailSubject": "Enquiry: Premium Plots at Orchard Heights, Phase 2 - lohithadharma Projects",
       "emailBody": "Dear Rohit Patel,\n\nThank you for contacting lohithadharma Projects PVT, LTD.\n\nWe received your request regarding plotting options in \"Orchard Heights, Phase 2\". \nWe note your preferences:\n- Budget Profile: ₹30.0 Lakhs\n- Expected Investment Timeline: Within 30 Days\n\nWe have premium layout packages matching your requirements. I would like to schedule a quick call to share layout drawings, pricing details, and set up a site visit.\n\nPlease let me know a suitable time to call you, or contact me directly at your convenience.\n\nWarm regards,\nRahul Sharma\nSales Representative\nlohithadharma Projects PVT, LTD."
+    },
+    {
+      "id": "lead_w31il0vwi",
+      "name": "Test Hot Buyer",
+      "email": "hot.buyer@test.com",
+      "phone": "+91 99999 88888",
+      "source": "Website Enquiry",
+      "budget": 6500000,
+      "location": "Premium Greenfield Plots, Sector 12",
+      "timeline": "Within 30 Days",
+      "notes": "Looking to book corner plot immediately. Have cash ready.",
+      "score": 100,
+      "priority": "Hot",
+      "status": "Contacted",
+      "assignedAgentId": "agent_2",
+      "createdAt": "2026-06-11T04:22:06.800Z",
+      "updatedAt": "2026-06-11T04:34:51.468Z",
+      "aiSummary": "Lead is highly qualified with an immediate timeline (Within 30 Days) and a strong budget of 65.0 Lakhs. They expressed explicit interest in Premium Greenfield Plots, Sector 12 and left active notes: \"Looking to book corner plot immediately. Have cash ready.\".",
+      "aiSuggestedAction": "Call Test Hot Buyer immediately. Introduce yourself as representative of lohithadharma Projects. Schedule a site visit for this upcoming weekend.",
+      "whatsappTemplate": "Hi Test Hot Buyer, thank you for your enquiry with lohithadharma Projects. I see you're interested in plots at Premium Greenfield Plots, Sector 12 (budget: ₹65.0 L). I am Priya Patel, your dedicated advisor. Would you be available for a brief call or a site visit this week? - Regards, Priya Patel",
+      "emailSubject": "Enquiry: Premium Plots at Premium Greenfield Plots, Sector 12 - lohithadharma Projects",
+      "emailBody": "Dear Test Hot Buyer,\n\nThank you for contacting lohithadharma Projects PVT, LTD.\n\nWe received your request regarding plotting options in \"Premium Greenfield Plots, Sector 12\". \nWe note your preferences:\n- Budget Profile: ₹65.0 Lakhs\n- Expected Investment Timeline: Within 30 Days\n\nWe have premium layout packages matching your requirements. I would like to schedule a quick call to share layout drawings, pricing details, and set up a site visit.\n\nPlease let me know a suitable time to call you, or contact me directly at your convenience.\n\nWarm regards,\nPriya Patel\nSales Representative\nlohithadharma Projects PVT, LTD."
     }
   ],
   "followUps": [
@@ -162,6 +184,26 @@
       "status": "Completed",
       "date": "2026-06-10T05:57:49.249Z",
       "createdAt": "2026-06-10T05:57:49.251Z"
+    },
+    {
+      "id": "followup_xm6kuxv4c",
+      "leadId": "lead_w31il0vwi",
+      "agentName": "Rahul Sharma",
+      "type": "Call",
+      "notes": "Called test buyer. Confirmed site visit for tomorrow morning.",
+      "status": "Completed",
+      "date": "2026-06-11T04:22:06.838Z",
+      "createdAt": "2026-06-11T04:22:06.839Z"
+    },
+    {
+      "id": "followup_mkbbj5ckv",
+      "leadId": "lead_2",
+      "agentName": "Priya Patel",
+      "type": "Call",
+      "notes": "Spoke to customer, interested in Orchard Heights.",
+      "status": "Completed",
+      "date": "2026-06-11T04:32:47.792Z",
+      "createdAt": "2026-06-11T04:32:47.796Z"
     }
   ],
   "alerts": [
@@ -212,6 +254,30 @@
       "read": false,
       "type": "Critical",
       "createdAt": "2026-06-10T06:02:24.801Z"
+    },
+    {
+      "id": "alert_jf7pmv6wm",
+      "leadId": "lead_w31il0vwi",
+      "message": "CRITICAL ALERT: Hot Lead \"Test Hot Buyer\" (Score 100) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-11T04:22:06.813Z"
+    },
+    {
+      "id": "alert_jggv25ht4",
+      "leadId": "lead_w31il0vwi",
+      "message": "CRITICAL ALERT: Hot Lead \"Test Hot Buyer\" (Score 100) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-11T04:22:08.081Z"
+    },
+    {
+      "id": "alert_zuaajcyel",
+      "leadId": "lead_w31il0vwi",
+      "message": "CRITICAL ALERT: Hot Lead \"Test Hot Buyer\" (Score 100) captured. Needs instant follow-up!",
+      "read": false,
+      "type": "Critical",
+      "createdAt": "2026-06-11T04:34:51.474Z"
     }
   ],
   "chats": [
@@ -263,6 +329,34 @@
       "sender": "bot",
       "message": "Hi Rohit Patel! Thanks for reaching out. What is your expected budget range for a residential plot?",
       "timestamp": "2026-06-10T06:02:24.784Z"
+    },
+    {
+      "id": "chat_kfprenq8a",
+      "leadId": "lead_w31il0vwi",
+      "sender": "buyer",
+      "message": "Hello, looking for a plot please.",
+      "timestamp": "2026-06-11T04:22:06.861Z"
+    },
+    {
+      "id": "chat_s6pszdl1n",
+      "leadId": "lead_w31il0vwi",
+      "sender": "bot",
+      "message": "Hi Test Hot Buyer! Thanks for reaching out. What is your expected budget range for a residential plot?",
+      "timestamp": "2026-06-11T04:22:08.074Z"
+    },
+    {
+      "id": "chat_283ai2y9e",
+      "leadId": "lead_w31il0vwi",
+      "sender": "buyer",
+      "message": "🏠Hello",
+      "timestamp": "2026-06-11T04:34:50.234Z"
+    },
+    {
+      "id": "chat_icdibpab7",
+      "leadId": "lead_w31il0vwi",
+      "sender": "bot",
+      "message": "Hi Test Hot Buyer! Thanks for reaching out. What is your expected budget range for a residential plot?",
+      "timestamp": "2026-06-11T04:34:51.453Z"
     }
   ]
 }

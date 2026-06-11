@@ -19,7 +19,7 @@
   <div class="app-container">
     
     <!-- NAVIGATION BAR -->
-    <header class="app-header">
+    <header class="app-header sticky-header">
       <div class="header-logo">
         <div class="logo-icon">
           <i class="fa-solid fa-hotel"></i>
@@ -31,15 +31,21 @@
       </div>
       
       <nav class="header-nav">
-        <button class="nav-btn active" data-tab="dashboard">
-          <i class="fa-solid fa-chart-line"></i> Dashboard
+        <button class="nav-btn active" data-tab="home">
+          <i class="fa-solid fa-house"></i> Home
+        </button>
+        <button class="nav-btn" data-tab="dashboard">
+          <i class="fa-solid fa-chart-line"></i> CRM Dashboard
         </button>
         <button class="nav-btn" data-tab="enquiry">
-          <i class="fa-solid fa-envelope-open-text"></i> Client Portal & WhatsApp
+          <i class="fa-solid fa-envelope-open-text"></i> Simulator Portal
         </button>
       </nav>
       
       <div class="header-actions">
+        <!-- navbar CTA -->
+        <button class="action-btn primary-btn navbar-cta-btn" id="navBookDemoBtn">Book Demo</button>
+        
         <!-- Notification Dropdown -->
         <div class="notification-wrapper">
           <button class="header-action-btn" id="notificationBtn">
@@ -74,8 +80,404 @@
     <!-- MAIN WORKSPACE -->
     <main class="app-main">
       
+      <!-- ================= HOME (LANDING PAGE) TAB ================= -->
+      <section id="homeTab" class="tab-content active">
+        <!-- HERO SECTION -->
+        <div class="hero-section">
+          <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Next-Gen AI Lead Scoring</span>
+            <h1 class="hero-headline">Turn Every Lead Into a Qualified Opportunity with AI</h1>
+            <p class="hero-subheadline">Automatically score, prioritize, and qualify leads using advanced AI so your sales team focuses only on high-intent prospects.</p>
+            <div class="hero-actions">
+              <button class="action-btn primary-btn hero-cta-primary" id="heroStartDemoBtn">
+                Start Free Demo <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button class="action-btn secondary-btn hero-cta-secondary" id="heroWatchVideoBtn">
+                <i class="fa-solid fa-circle-play"></i> Watch 2-Min Demo
+              </button>
+            </div>
+          </div>
+          
+          <div class="hero-visual">
+            <div class="animated-preview-frame">
+              <div class="preview-header">
+                <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+                <span class="preview-title">crm_dashboard_live.ai</span>
+              </div>
+              <div class="preview-body">
+                <div class="preview-row">
+                  <div class="preview-col-left">
+                    <span class="preview-label">Incoming Lead Analysis</span>
+                    <h3 class="preview-lead-name">Rajesh Patil</h3>
+                    <div class="preview-bar-row">
+                      <div class="preview-bar-outer"><div class="preview-bar-inner"></div></div>
+                      <span class="preview-percentage">92% Match</span>
+                    </div>
+                  </div>
+                  <div class="preview-col-right">
+                    <div class="floating-mini-card score-card animate-float-delay-1">
+                      <i class="fa-solid fa-fire text-cyan"></i>
+                      <div>
+                        <span>Lead Score</span>
+                        <strong>92% (Hot)</strong>
+                      </div>
+                    </div>
+                    <div class="floating-mini-card action-card animate-float-delay-2">
+                      <i class="fa-solid fa-wand-magic-sparkles text-blue"></i>
+                      <div>
+                        <span>Recommended Action</span>
+                        <strong>Schedule Call</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL PROOF SECTION -->
+        <div class="social-proof-section">
+          <div class="stats-counter-grid">
+            <div class="counter-item">
+              <h2 id="counterLeads" data-target="5000">0</h2>
+              <span>Leads Qualified</span>
+            </div>
+            <div class="counter-item">
+              <h2 id="counterAccuracy" data-target="95">0</h2>
+              <span>Accuracy Rating</span>
+            </div>
+            <div class="counter-item">
+              <h2 id="counterResponse" data-target="60">0</h2>
+              <span>Faster Response Time</span>
+            </div>
+            <div class="counter-item">
+              <h2 id="counterProductivity" data-target="3">0</h2>
+              <span>Sales Productivity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUSTED BY SECTION -->
+        <div class="trust-section">
+          <p class="trust-title">Trusted by Modern Sales Teams</p>
+          <div class="logo-carousel-container">
+            <div class="logo-carousel-track">
+              <!-- Double logos for seamless looping -->
+              <div class="logo-item"><i class="fa-brands fa-google"></i> Google Cloud</div>
+              <div class="logo-item"><i class="fa-brands fa-microsoft"></i> Microsoft</div>
+              <div class="logo-item"><i class="fa-brands fa-aws"></i> AWS Cloud</div>
+              <div class="logo-item"><i class="fa-brands fa-salesforce"></i> Salesforce</div>
+              <div class="logo-item"><i class="fa-brands fa-hubspot"></i> HubSpot</div>
+              <div class="logo-item"><i class="fa-brands fa-slack"></i> Slack</div>
+              <div class="logo-item"><i class="fa-brands fa-google"></i> Google Cloud</div>
+              <div class="logo-item"><i class="fa-brands fa-microsoft"></i> Microsoft</div>
+              <div class="logo-item"><i class="fa-brands fa-aws"></i> AWS Cloud</div>
+              <div class="logo-item"><i class="fa-brands fa-salesforce"></i> Salesforce</div>
+              <div class="logo-item"><i class="fa-brands fa-hubspot"></i> HubSpot</div>
+              <div class="logo-item"><i class="fa-brands fa-slack"></i> Slack</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE WORKFLOW SECTION -->
+        <div class="workflow-section">
+          <h2 class="section-title">Visual Lead Qualification Workflow</h2>
+          <p class="section-subtitle">See how our AI processes every incoming customer inquiry in real-time.</p>
+          <div class="workflow-grid">
+            <div class="workflow-node-card">
+              <div class="node-num">1</div>
+              <div class="node-icon"><i class="fa-solid fa-clipboard-question"></i></div>
+              <h3>Lead Submission</h3>
+              <p>Client submits details via Form or WhatsApp chat simulator.</p>
+            </div>
+            <div class="workflow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="workflow-node-card">
+              <div class="node-num">2</div>
+              <div class="node-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h3>AI Analysis</h3>
+              <p>Gemini AI processes text, extracting budget, location, and intent.</p>
+            </div>
+            <div class="workflow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="workflow-node-card">
+              <div class="node-num">3</div>
+              <div class="node-icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <h3>AI Lead Scoring</h3>
+              <p>Automated scoring ranks client intent on a 100-point scale.</p>
+            </div>
+            <div class="workflow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="workflow-node-card">
+              <div class="node-num">4</div>
+              <div class="node-icon"><i class="fa-solid fa-user-check"></i></div>
+              <h3>CRM & Alert</h3>
+              <p>Database updates status, allocating hot leads to sales representatives.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE PRODUCT SHOWCASE SECTION -->
+        <div class="showcase-section">
+          <h2 class="section-title">Explore the Product Workspaces</h2>
+          <p class="section-subtitle">Click the tabs below to preview the functional modules of the CRM.</p>
+          
+          <div class="showcase-tab-headers">
+            <button class="showcase-tab-btn active" data-showcase="dashboard">
+              <i class="fa-solid fa-chart-line"></i> Sales CRM Dashboard
+            </button>
+            <button class="showcase-tab-btn" data-showcase="copilot">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> AI Copilot Insights
+            </button>
+            <button class="showcase-tab-btn" data-showcase="simulator">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp Bot Simulator
+            </button>
+          </div>
+          
+          <div class="showcase-tab-content">
+            <!-- Showcase 1: Dashboard -->
+            <div class="showcase-panel active" id="showcase-dashboard">
+              <div class="showcase-grid-content">
+                <div class="showcase-text">
+                  <h3>Centralized Lead Dashboard</h3>
+                  <p>View all prospects at a glance, categorized by AI priority scores. Switch instantly between a structured grid view and a drag-and-drop Kanban workflow board.</p>
+                  <ul class="showcase-features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Filter by Hot, Warm, or Cold status</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Search records instantly in the DOM</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Real-time pipeline value calculation</li>
+                  </ul>
+                  <button class="action-btn primary-btn view-crm-shortcut" data-target-tab="dashboard">Open CRM Dashboard</button>
+                </div>
+                <div class="showcase-preview">
+                  <div class="showcase-placeholder" id="dashboard-placeholder">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard View Live Preview</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Showcase 2: Copilot -->
+            <div class="showcase-panel" id="showcase-copilot">
+              <div class="showcase-grid-content">
+                <div class="showcase-text">
+                  <h3>AI Copilot Recommendation Engine</h3>
+                  <p>Open individual leads to inspect AI-generated scoring parameters. The copilot writes customized WhatsApp pitches and draft email proposals based on context.</p>
+                  <ul class="showcase-features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> High-fidelity SVG score visualizer</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Automated follow-up template drafts</li>
+                    <li><i class="fa-solid fa-circle-check"></i> One-click templates copies</li>
+                  </ul>
+                  <button class="action-btn primary-btn view-crm-shortcut" data-target-tab="dashboard">Inspect AI Copilot</button>
+                </div>
+                <div class="showcase-preview">
+                  <div class="showcase-placeholder" id="copilot-placeholder">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>AI Copilot View Live Preview</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Showcase 3: Simulator -->
+            <div class="showcase-panel" id="showcase-simulator">
+              <div class="showcase-grid-content">
+                <div class="showcase-text">
+                  <h3>WhatsApp Simulator</h3>
+                  <p>Interact directly with the AI qualification bot. As you type, the bot parses details, adjusts lead scores, and alerts agents in the dashboard.</p>
+                  <ul class="showcase-features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Live WhatsApp chat interface</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Natural language details capture</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Instant dashboard state syncs</li>
+                  </ul>
+                  <button class="action-btn primary-btn view-crm-shortcut" data-target-tab="enquiry">Open Chat Simulator</button>
+                </div>
+                <div class="showcase-preview">
+                  <div class="showcase-placeholder" id="simulator-placeholder">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>WhatsApp View Live Preview</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCT FEATURE CARDS -->
+        <div class="features-section">
+          <h2 class="section-title">Core AI Qualification Features</h2>
+          <p class="section-subtitle">Everything you need to automate your inbound sales pipeline.</p>
+          <div class="features-grid">
+            <div class="feature-card-premium">
+              <div class="feat-icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <h3>AI Lead Scoring</h3>
+              <p>Automatically grade prospects based on budget, layout preference, and timing constraints.</p>
+            </div>
+            <div class="feature-card-premium">
+              <div class="feat-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+              <h3>Intent Analysis</h3>
+              <p>Recognize high-intent phrasing within client notes or simulator message logs.</p>
+            </div>
+            <div class="feature-card-premium">
+              <div class="feat-icon"><i class="fa-solid fa-user-check"></i></div>
+              <h3>Auto Qualification</h3>
+              <p>Classify leads instantly as Hot or Warm, alerting reps immediately when action is required.</p>
+            </div>
+            <div class="feature-card-premium">
+              <div class="feat-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+              <h3>CRM Integration</h3>
+              <p>Full database synchronizations: updates cascade seamlessly from chats to metrics.</p>
+            </div>
+            <div class="feature-card-premium">
+              <div class="feat-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <h3>Real-Time Insights</h3>
+              <p>Track metrics, pipeline values, and budget distribution charts on one central console.</p>
+            </div>
+            <div class="feature-card-premium">
+              <div class="feat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h3>Sales Recommendations</h3>
+              <p>AI writes pre-formatted sales copy and WhatsApp drafts ready to copy/send.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPARISON SECTION -->
+        <div class="comparison-section">
+          <h2 class="section-title">Traditional CRM vs. lohithadharma AI</h2>
+          <p class="section-subtitle">Compare the efficiency gains of automated qualification against old manual methods.</p>
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature / Outcome</th>
+                  <th>Traditional Manual Process</th>
+                  <th class="highlight-column">Lohithadharma AI CRM</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lead Response Time</td>
+                  <td>24 to 48 Hours</td>
+                  <td class="highlight-column"><i class="fa-solid fa-bolt text-cyan"></i> Instant (< 1 Sec)</td>
+                </tr>
+                <tr>
+                  <td>Qualifying Accuracy</td>
+                  <td>Subjective & Inconsistent</td>
+                  <td class="highlight-column"><i class="fa-solid fa-check text-cyan"></i> 95% Data-Driven Accuracy</td>
+                </tr>
+                <tr>
+                  <td>Team Workload</td>
+                  <td>100% Manual Data Entry & Calling</td>
+                  <td class="highlight-column"><i class="fa-solid fa-check text-cyan"></i> Fully Automated Pre-qualification</td>
+                </tr>
+                <tr>
+                  <td>Cost Efficiency</td>
+                  <td>High Overhead (Calling/Vetting)</td>
+                  <td class="highlight-column"><i class="fa-solid fa-check text-cyan"></i> Saves up to 80% Admin Cost</td>
+                </tr>
+                <tr>
+                  <td>Sales Conversion</td>
+                  <td>Prone to delay leaks</td>
+                  <td class="highlight-column"><i class="fa-solid fa-check text-cyan"></i> 3X pipeline acceleration</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE ROI CALCULATOR SECTION -->
+        <div class="calculator-section">
+          <div class="calculator-card-premium">
+            <div class="calc-header">
+              <h2>Interactive ROI Calculator</h2>
+              <p>Estimate the monthly savings and revenue boost you gain by deploying lohithadharma AI.</p>
+            </div>
+            <div class="calc-body">
+              <div class="calc-inputs">
+                <div class="calc-slider-group">
+                  <div class="slider-label-row">
+                    <label for="roiMonthlyLeads">Monthly Inbound Leads</label>
+                    <span id="roiLeadsValue">1,000 Leads</span>
+                  </div>
+                  <input type="range" id="roiMonthlyLeads" min="100" max="10000" step="100" value="1000">
+                </div>
+                
+                <div class="calc-slider-group">
+                  <div class="slider-label-row">
+                    <label for="roiTeamSize">Sales Team Size</label>
+                    <span id="roiTeamValue">5 reps</span>
+                  </div>
+                  <input type="range" id="roiTeamSize" min="1" max="50" step="1" value="5">
+                </div>
+                
+                <div class="calc-slider-group">
+                  <div class="slider-label-row">
+                    <label for="roiConversion">Est. Value per Deal (INR)</label>
+                    <span id="roiConversionValue">₹35 Lakhs</span>
+                  </div>
+                  <input type="range" id="roiConversion" min="500000" max="10000000" step="500000" value="3500000">
+                </div>
+              </div>
+              
+              <div class="calc-outputs">
+                <div class="calc-output-card">
+                  <span>Hours Saved / Month</span>
+                  <h3 id="calcHoursSaved">250 hrs</h3>
+                </div>
+                <div class="calc-output-card highlight">
+                  <span>Revenue Boost Potential</span>
+                  <h3 id="calcRevBoost">₹10.5 Lakhs</h3>
+                </div>
+                <div class="calc-output-card">
+                  <span>Rep Productivity Gain</span>
+                  <h3 id="calcProdGain">3.2x</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIALS SECTION -->
+        <div class="testimonials-section">
+          <h2 class="section-title">Trusted by Real Estate Pioneers</h2>
+          <p class="section-subtitle">Here is what sales managers say about our automated qualifiers.</p>
+          <div class="testimonial-carousel">
+            <div class="testimonial-card">
+              <div class="test-quote">"Implementing this tool saved our team hundreds of cold qualification hours. We now call leads within 5 minutes of their submission, closing deals 3x faster."</div>
+              <div class="test-profile">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=128" alt="Client User" class="test-avatar">
+                <div class="test-details">
+                  <h4>Ankit Sharma</h4>
+                  <span>Head of Sales, Greenfield Ventures</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="test-quote">"The WhatsApp simulator chatbot captured budget preference and locations perfectly, automatically registering hot leads in our database without any manual logging."</div>
+              <div class="test-profile">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=128" alt="Client User" class="test-avatar">
+                <div class="test-details">
+                  <h4>Meera Nair</h4>
+                  <span>CRM Director, Orchard Heights Group</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CALL TO ACTION BANNER SECTION -->
+        <div class="cta-banner-section">
+          <div class="cta-banner-card">
+            <h2>Ready to Qualify Leads 24/7 with AI?</h2>
+            <p>Start automating lead qualification today and accelerate your sales pipeline.</p>
+            <div class="cta-banner-actions">
+              <button class="action-btn primary-btn" id="ctaStartTrialBtn">Start Free Trial</button>
+              <button class="action-btn secondary-btn" id="ctaBookLiveBtn">Book Live Demo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ================= DASHBOARD TAB ================= -->
-      <section id="dashboardTab" class="tab-content active">
+      <section id="dashboardTab" class="tab-content">
         <!-- Dashboard Statistics Row -->
         <div class="stats-grid" id="statsGrid">
           <div class="stat-card total-leads">
@@ -191,7 +593,7 @@
                   <span class="column-title">New Enquiries</span>
                   <span class="column-count" id="count-New">0</span>
                 </div>
-                <div class="kanban-cards-list" id="list-New" ondragover="allowDrop(event)" ondrop="drop(event, 'New')"></div>
+                <div class="kanban-cards-list" id="list-New" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event, 'New')"></div>
               </div>
               <!-- Assigned Column -->
               <div class="kanban-column" data-status="Assigned">
@@ -199,7 +601,7 @@
                   <span class="column-title">Assigned</span>
                   <span class="column-count" id="count-Assigned">0</span>
                 </div>
-                <div class="kanban-cards-list" id="list-Assigned" ondragover="allowDrop(event)" ondrop="drop(event, 'Assigned')"></div>
+                <div class="kanban-cards-list" id="list-Assigned" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event, 'Assigned')"></div>
               </div>
               <!-- Contacted Column -->
               <div class="kanban-column" data-status="Contacted">
@@ -207,7 +609,7 @@
                   <span class="column-title">Contacted</span>
                   <span class="column-count" id="count-Contacted">0</span>
                 </div>
-                <div class="kanban-cards-list" id="list-Contacted" ondragover="allowDrop(event)" ondrop="drop(event, 'Contacted')"></div>
+                <div class="kanban-cards-list" id="list-Contacted" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event, 'Contacted')"></div>
               </div>
               <!-- Nurturing Column -->
               <div class="kanban-column" data-status="Nurturing">
@@ -215,7 +617,7 @@
                   <span class="column-title">Nurturing</span>
                   <span class="column-count" id="count-Nurturing">0</span>
                 </div>
-                <div class="kanban-cards-list" id="list-Nurturing" ondragover="allowDrop(event)" ondrop="drop(event, 'Nurturing')"></div>
+                <div class="kanban-cards-list" id="list-Nurturing" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event, 'Nurturing')"></div>
               </div>
               <!-- Converted Column -->
               <div class="kanban-column" data-status="Converted">
@@ -223,7 +625,7 @@
                   <span class="column-title">Converted</span>
                   <span class="column-count" id="count-Converted">0</span>
                 </div>
-                <div class="kanban-cards-list" id="list-Converted" ondragover="allowDrop(event)" ondrop="drop(event, 'Converted')"></div>
+                <div class="kanban-cards-list" id="list-Converted" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="drop(event, 'Converted')"></div>
               </div>
             </div>
           </div>
@@ -240,6 +642,17 @@
             <div class="card-header">
               <h2><i class="fa-solid fa-clipboard-list"></i> Digital Capture Form</h2>
               <p>Simulates lead entry via website form, mobile app, or walk-in enquiry.</p>
+            </div>
+            
+            <!-- Form Progress Tracker -->
+            <div class="form-progress-bar-container" style="margin-bottom: 1.5rem; background: rgba(141, 110, 99, 0.04); border-radius: 10px; padding: 0.75rem 1rem; border: 1px solid var(--border-glass);">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-muted);">
+                <span>Enquiry Profile Completeness</span>
+                <span id="formProgressPercent">0%</span>
+              </div>
+              <div style="height: 6px; background: rgba(141, 110, 99, 0.1); border-radius: 3px; overflow: hidden;">
+                <div id="formProgressBar" style="width: 0%; height: 100%; background: var(--primary); border-radius: 3px; transition: var(--transition-smooth);"></div>
+              </div>
             </div>
             
             <form id="leadEntryForm" class="styled-form">
@@ -350,9 +763,19 @@
                 </div>
                 
                 <div class="whatsapp-input-area">
-                  <button class="wa-emoji-btn"><i class="fa-regular fa-smile"></i></button>
+                  <div class="wa-emoji-panel" id="emojiPanel">
+                    <button type="button" class="wa-emoji-item" data-emoji="🏠">🏠</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="🏢">🏢</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="💰">💰</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="📍">📍</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="👍">👍</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="🔥">🔥</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="🗓️">🗓️</button>
+                    <button type="button" class="wa-emoji-item" data-emoji="💬">💬</button>
+                  </div>
+                  <button type="button" class="wa-emoji-btn" id="waEmojiBtn"><i class="fa-regular fa-smile"></i></button>
                   <input type="text" id="whatsappInputField" placeholder="Type a message to capture details...">
-                  <button class="wa-send-btn" id="whatsappSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                  <button type="button" class="wa-send-btn" id="whatsappSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
               </div>
             </div>
@@ -578,12 +1001,63 @@
     </main>
     
     <!-- FOOTER -->
-    <footer class="app-footer">
-      <div class="footer-left">
-        <p>© 2026 lohithadharma Projects PVT, LTD. All rights reserved.</p>
+    <footer class="app-footer-premium">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <div class="footer-logo">
+            <div class="logo-icon"><i class="fa-solid fa-hotel"></i></div>
+            <div class="logo-text text-navy">
+              <h4>lohithadharma</h4>
+              <span>Projects PVT, LTD.</span>
+            </div>
+          </div>
+          <p class="brand-desc">Enterprise-grade AI Lead Qualification and automated follow-ups for modern real estate sales teams.</p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#" class="view-crm-shortcut" data-target-tab="dashboard">CRM Dashboard</a></li>
+            <li><a href="#" class="view-crm-shortcut" data-target-tab="enquiry">Client Simulator</a></li>
+            <li><a href="#" class="view-crm-shortcut" data-target-tab="dashboard">Lead Scoring</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">API Documentation</a></li>
+            <li><a href="#">System Architecture</a></li>
+            <li><a href="#">Lead Scoring Rules</a></li>
+            <li><a href="#">SaaS Pricing Plan</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact & Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Sales</a></li>
+            <li><span>support@lohithadharma.com</span></li>
+            <li><span>+91 80 4912 3456</span></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-right">
-        <span>AI Lead Qualification & Follow-up System v1.0.0</span>
+      
+      <div class="footer-bottom">
+        <p>© 2026 lohithadharma Projects PVT, LTD. All rights reserved.</p>
+        <div class="footer-meta">
+          <span>v1.0.0 (Production Build)</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
       </div>
     </footer>
     
